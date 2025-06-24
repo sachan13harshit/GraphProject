@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const API_BASE_URL = 'http://localhost:5000/api'
+const API_BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/api`;
 
 const AddPrerequisiteForm = ({ onSkillAdded, skills, token }) => {
   const [prerequisiteData, setPrerequisiteData] = useState({
@@ -16,7 +16,7 @@ const AddPrerequisiteForm = ({ onSkillAdded, skills, token }) => {
     if (message) {
       const timer = setTimeout(() => {
         setMessage('');
-      }, 10000); // 10 seconds
+      }, 10000); 
 
       return () => {
         clearTimeout(timer);

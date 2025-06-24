@@ -1,20 +1,15 @@
-/**
- * Topological Sort using Kahn's Algorithm
- * Returns a valid learning order for skills
- */
+
 const topologicalSort = (skills) => {
   const inDegree = new Map();
   const adj = new Map();
   const sortedOrder = [];
   const queue = [];
 
-  // Initialize adjacency list and in-degree map
   skills.forEach(skill => {
     adj.set(skill._id.toString(), []);
     inDegree.set(skill._id.toString(), 0);
   });
 
-  // Build adjacency list and calculate in-degrees
   skills.forEach(skill => {
     skill.prerequisites.forEach(prereq => {
       const prereqId = prereq._id.toString();
@@ -24,14 +19,12 @@ const topologicalSort = (skills) => {
     });
   });
 
-  // Initialize queue with nodes having in-degree of 0
   inDegree.forEach((degree, skillId) => {
     if (degree === 0) {
       queue.push(skillId);
     }
   });
 
-  // Process queue
   while (queue.length > 0) {
     const skillId = queue.shift();
     sortedOrder.push(skillId);
@@ -44,7 +37,6 @@ const topologicalSort = (skills) => {
     });
   }
 
-  // Check for cycles
   if (sortedOrder.length !== skills.length) {
     throw new Error('A cycle was detected in the skill graph.');
   }
@@ -52,9 +44,6 @@ const topologicalSort = (skills) => {
   return sortedOrder;
 };
 
-/**
- * Detect cycles in the skill graph using DFS
- */
 function hasCycle(skills) {
   const visited = new Set();
   const recStack = new Set();
@@ -89,14 +78,12 @@ function hasCycle(skills) {
   return false;
 }
 
-/**
- * Get skills that are ready to unlock (all prerequisites completed)
- */
+
 function getUnlockableSkills(skills) {
   const unlockable = [];
   
   skills.forEach(skill => {
-    if (skill.completed) return; // Skip already completed skills
+    if (skill.completed) return; 
     
     const allPrereqsCompleted = skill.prerequisites.every(prereqId => {
       const prereq = skills.find(s => s._id.toString() === prereqId.toString());
@@ -111,14 +98,11 @@ function getUnlockableSkills(skills) {
   return unlockable;
 }
 
-/**
- * Get skills that are locked (missing prerequisites)
- */
 function getLockedSkills(skills) {
   const locked = [];
   
   skills.forEach(skill => {
-    if (skill.completed) return; // Skip completed skills
+    if (skill.completed) return; 
     
     const hasIncompletePrereqs = skill.prerequisites.some(prereqId => {
       const prereq = skills.find(s => s._id.toString() === prereqId.toString());

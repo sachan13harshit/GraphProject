@@ -1,7 +1,6 @@
 const Skill = require('../models/Skill');
 const { topologicalSort, hasCycle, getUnlockableSkills, getLockedSkills } = require('../utils/graphAlgorithms');
 
-// Get all skills
 const getAllSkills = async (req, res) => {
   try {
     const skills = await Skill.find({ user: req.user.id }).populate('prerequisites', 'name');
@@ -19,7 +18,6 @@ const getAllSkills = async (req, res) => {
   }
 };
 
-// Create a new skill
 const createSkill = async (req, res) => {
   try {
     const { name, description, level } = req.body;

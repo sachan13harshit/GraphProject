@@ -29,7 +29,6 @@ const SkillStatus = ({ status = { unlockable: [], locked: [], total: 0 }, skills
         </div>
       </div>
 
-      {/* Unlockable Skills */}
       <div className="mb-6">
         <h3 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
           <span className="text-green-600 mr-2">🔓</span>
@@ -49,7 +48,6 @@ const SkillStatus = ({ status = { unlockable: [], locked: [], total: 0 }, skills
         )}
       </div>
 
-      {/* Locked Skills */}
       <div>
         <h3 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
           <span className="text-red-600 mr-2">🔒</span>
@@ -69,7 +67,6 @@ const SkillStatus = ({ status = { unlockable: [], locked: [], total: 0 }, skills
         )}
       </div>
 
-      {/* Progress Bar */}
       {total > 0 && (
         <div className="mt-6">
           <div className="flex justify-between text-sm text-gray-600 mb-2">
@@ -85,7 +82,6 @@ const SkillStatus = ({ status = { unlockable: [], locked: [], total: 0 }, skills
         </div>
       )}
 
-      {/* Summary */}
       <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg mt-6">
         <h3 className="font-semibold text-blue-800">Summary</h3>
         <p className="text-sm text-blue-700 mt-2">Total Skills: <span className="font-bold">{total}</span></p>

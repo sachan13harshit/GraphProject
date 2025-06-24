@@ -12,7 +12,6 @@ const {
 } = require('../controllers/skillController');
 const { protect } = require('../middleware/auth');
 
-// All routes in this file will be protected
 router.use(protect);
 
 router.route('/')

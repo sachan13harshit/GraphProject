@@ -44,10 +44,8 @@ const skillSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 });
 
-// Ensure a skill name is unique for a given user
 skillSchema.index({ user: 1, name: 1 }, { unique: true });
 
-// Update the updatedAt field before saving
 skillSchema.pre('save', function(next) {
   this.updatedAt = Date.now();
   next();
